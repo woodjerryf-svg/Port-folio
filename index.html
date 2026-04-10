@@ -32,6 +32,7 @@ body{
   font-family:'Inter',sans-serif;
   font-weight:400;
   overflow-x:hidden;
+  line-height:1.6;
 }
 
 /* ── NAV ── */
@@ -63,7 +64,7 @@ nav{
   padding:0.4rem 1.1rem;border-radius:100px;
   font-size:0.78rem;font-weight:500;
   color:var(--gray);text-decoration:none;
-  transition:all 0.2s;cursor:pointer;border:none;background:none;
+  transition:all 0.3s ease;cursor:pointer;border:none;background:none;
 }
 .nav-tab:hover,.nav-tab.active{
   background:var(--bg2);color:var(--white);
@@ -73,7 +74,7 @@ nav{
   font-size:0.75rem;font-weight:700;
   padding:0.45rem 1rem;border-radius:100px;
   text-decoration:none;letter-spacing:0.03em;
-  transition:background 0.2s;
+  transition:all 0.3s ease;
 }
 .nav-dl:hover{background:var(--amber2);}
 
@@ -138,7 +139,7 @@ nav{
   display:flex;align-items:center;gap:0.5rem;
   font-size:0.8rem;color:var(--gray);
 }
-.hc-item a{color:var(--gray);text-decoration:none;transition:color 0.2s;}
+.hc-item a{color:var(--gray);text-decoration:none;transition:all 0.3s ease;}
 .hc-item a:hover{color:var(--amber);}
 .hc-icon{font-size:0.85rem;}
 
@@ -153,6 +154,15 @@ nav{
   object-fit:cover;
   object-position:center top;
   opacity:0;animation:fadeIn 1s 0.8s forwards;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* Overlay for image */
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(245,158,11,0.1) 100%);
+  pointer-events:none;
 }
 
 /* overlay gradient at bottom */
@@ -172,6 +182,22 @@ nav{
   transition:background 0.2s;
 }
 .hero-dl-corner:hover{background:var(--amber2);}
+
+/* CTA Button */
+.hero-cta{
+  display:inline-block;
+  background:var(--amber);color:#000;
+  font-size:0.9rem;font-weight:600;
+  padding:0.75rem 1.5rem;border-radius:50px;
+  text-decoration:none;letter-spacing:0.05em;
+  transition:all 0.3s ease;
+  margin-top:2rem;
+}
+.hero-cta:hover{
+  background:var(--amber2);
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(245,158,11,0.4);
+}
 
 /* ── PANELS ── */
 .panel{
@@ -205,7 +231,7 @@ nav{
   background:var(--bg3);border:1px solid var(--border2);
   border-radius:8px;padding:0.45rem 0.9rem;
   font-size:0.78rem;color:var(--white);font-weight:500;
-  transition:border-color 0.2s;
+  transition:all 0.3s ease;
 }
 .tool-chip:hover{border-color:var(--amber);}
 .tool-chip span{font-size:1.1rem;}
@@ -241,6 +267,8 @@ nav{
   object-fit:cover;
   border:1px solid var(--border2);
   display:block;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
 }
 .summary-card{
   position:absolute;bottom:-1.5rem;right:-1rem;
@@ -249,6 +277,8 @@ nav{
   border-radius:12px;padding:1rem 1.25rem;
   min-width:150px;
   box-shadow:0 20px 40px rgba(0,0,0,0.5);
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
 }
 .summary-card-num{
   font-size:2.2rem;font-weight:900;
@@ -331,7 +361,7 @@ nav{
   font-size:0.75rem;padding:0.35rem 0.85rem;
   border:1px solid var(--border2);border-radius:100px;
   color:var(--gray);background:var(--bg3);
-  transition:all 0.2s;
+  transition:all 0.3s ease;
 }
 .stg-chip:hover{border-color:var(--amber);color:var(--amber);}
 
@@ -365,6 +395,8 @@ nav{
   background:var(--bg2);padding:2rem;
   text-decoration:none;display:block;
   transition:background 0.25s;position:relative;overflow:hidden;
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
 }
 .link-card:hover{background:var(--bg3);}
 .link-card::after{
@@ -381,6 +413,11 @@ nav{
 .lc-url{font-size:0.7rem;color:var(--amber);margin-bottom:0.75rem;display:block;font-family:'Inter',monospace;}
 .lc-desc{font-size:0.82rem;color:var(--gray);line-height:1.6;}
 
+/* Design grid */
+.design-grid{
+  grid-template-columns:repeat(3,1fr);
+}
+
 /* ── CONTACT PANEL ── */
 #contact-panel{background:var(--bg);}
 .contact-layout{
@@ -393,7 +430,7 @@ nav{
   padding:1rem 1.25rem;
   border:1px solid var(--border);border-radius:10px;
   background:var(--bg3);margin-bottom:0.75rem;
-  transition:all 0.2s;
+  transition:all 0.3s ease;
 }
 .cinfo-line:hover{border-color:var(--amber);}
 .cil-icon{
@@ -436,7 +473,7 @@ nav{
   width:100%;background:var(--amber);color:#000;
   border:none;border-radius:8px;
   font-family:'Inter',sans-serif;font-size:0.9rem;font-weight:700;
-  padding:0.9rem;cursor:pointer;transition:all 0.2s;
+  padding:0.9rem;cursor:pointer;transition:all 0.3s ease;
 }
 .btn-cf:hover{background:var(--amber2);transform:translateY(-1px);box-shadow:0 8px 24px rgba(245,158,11,0.3);}
 .btn-cf:disabled{opacity:0.6;cursor:not-allowed;transform:none;box-shadow:none;}
@@ -487,13 +524,35 @@ footer .f-amber{font-size:0.72rem;color:var(--amber);letter-spacing:0.1em;}
   .hero-photo{object-position:center center;}
   .summary-grid,.contact-layout,.skills-layout,.exp-grid{grid-template-columns:1fr;}
   .links-grid{grid-template-columns:1fr 1fr;}
-  .panel{padding:2rem;padding-top:4rem;}
+  .panel{padding:2rem;padding-top:4rem;text-align:center;}
   footer{flex-direction:column;gap:0.5rem;text-align:center;}
 }
 @media(max-width:600px){
   nav{padding:0 1rem;}
   .links-grid{grid-template-columns:1fr;}
   .form-row{grid-template-columns:1fr;}
+  .panel{text-align:center;}
+}
+@media(max-width:768px){
+  .design-grid{
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+    background:none;
+    border:none;
+    border-radius:0;
+    overflow:visible;
+    padding:0;
+  }
+  .design-grid .link-card{
+    width:100%;
+    margin:0 1rem;
+  }
+  .design-grid .link-card img{
+    height:auto;
+    min-height:250px;
+    object-fit:cover;
+  }
 }
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2QTMF62BSY"></script>
@@ -538,12 +597,14 @@ gtag('config', 'G-2QTMF62BSY');
       <div class="hc-item"><span class="hc-icon">�</span><a href="https://wa.me/50937233626" target="_blank">+509 3723-3626</a></div>
       <div class="hc-item"><span class="hc-icon">📍</span>Pétion-Ville, Haïti</div>
     </div>
+    <a href="mailto:woodjerryf@gmail.com" class="hero-cta">Me contacter</a>
   </div>
 
   <!-- RIGHT — photo sans fond sur glow warm -->
   <div class="hero-right">
     <a href="CV_WoodJerry_FILSAIME_2026.pdf" download class="hero-dl-corner">Download CV</a>
     <img src="images/imageaccueil.png" alt="Wood Jerry FILS-AIMÉ" class="hero-photo" style="mix-blend-mode:normal;object-fit:contain;padding-bottom:0;">
+    <div class="hero-overlay"></div>
     <div class="hero-photo-fade"></div>
   </div>
   <div class="hero-right" style="display:none;">
@@ -853,7 +914,7 @@ gtag('config', 'G-2QTMF62BSY');
     <p class="ph-sub">Covers et visuels créatifs pour supports marketing, packaging et communication.</p>
   </div>
   <div class="links-container" style="margin-top:1.5rem;">
-    <div class="links-grid reveal" style="grid-template-columns:repeat(3,1fr);">
+    <div class="links-grid reveal design-grid">
     <a href="images/D1.jpg" target="_blank" class="link-card">
       <img src="images/D1.jpg" alt="Cover D1" style="width:100%;border-radius:12px;margin-bottom:1rem;">
       <div class="lc-num">D1 ————</div>
@@ -931,7 +992,7 @@ gtag('config', 'G-2QTMF62BSY');
       </div>
     </div>
 
-    <form class="contact-form" id="cForm" action="https://formsubmit.co/el/sidowo" method="POST">
+    <form class="contact-form" id="cForm" action="mailto:woodjerryf@gmail.com" method="POST" enctype="text/plain">
       <h3 class="cf-title">Envoyer un message</h3>
       <p class="cf-sub">Je réponds dans les 24h.</p>
       <div class="form-row">
@@ -1033,35 +1094,7 @@ const obs = new IntersectionObserver(entries => {
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
 // ── Formspree submit ──
-const cForm = document.getElementById('cForm');
-const cfBtn = document.getElementById('cfBtn');
-const cfSucc = document.getElementById('cfSucc');
-if(cForm) {
-  cForm.addEventListener('submit', async e => {
-    e.preventDefault();
-    cfBtn.disabled = true;
-    cfBtn.textContent = 'Envoi...';
-    try {
-      const res = await fetch(cForm.action, {
-        method:'POST', body:new FormData(cForm),
-        headers:{'Accept':'application/json'}
-      });
-      if(res.ok) {
-        cForm.reset();
-        cfBtn.style.display='none';
-        cfSucc.style.display='block';
-      } else {
-        cfBtn.disabled=false;
-        cfBtn.textContent='Envoyer le message →';
-        alert('Erreur. Contactez : woodjerryf@gmail.com');
-      }
-    } catch(err) {
-      cfBtn.disabled=false;
-      cfBtn.textContent='Envoyer le message →';
-      alert('Erreur réseau. Contactez : woodjerryf@gmail.com');
-    }
-  });
-}
+// Removed - now uses mailto directly
 
 // Init home reveals
 document.querySelectorAll('#home .reveal').forEach(el => el.classList.add('visible'));
