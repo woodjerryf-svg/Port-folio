@@ -288,24 +288,20 @@ nav{
 
 /* ── EXPERIENCE ── */
 #experience{background:var(--bg);}
-.exp-grid{
-  display:grid;grid-template-columns:220px 1fr;
-  gap:0;
-}
-.exp-tabs{
-  border-right:1px solid var(--border);
+.exp-accordion{
   display:flex;flex-direction:column;
 }
+.exp-item{
+  border-bottom:1px solid var(--border);
+}
 .exp-tab-btn{
-  padding:1.25rem 1rem;
+  width:100%;padding:1.25rem 1rem;
   border:none;background:none;
   text-align:left;cursor:pointer;
-  border-left:2px solid transparent;
   transition:all 0.2s;
 }
 .exp-tab-btn:hover{background:var(--bg3);}
 .exp-tab-btn.active{
-  border-left-color:var(--amber);
   background:rgba(245,158,11,0.07);
 }
 .etb-date{
@@ -316,8 +312,7 @@ nav{
 .etb-title{font-size:0.85rem;color:var(--white);font-weight:500;margin-bottom:0.1rem;}
 .etb-org{font-size:0.72rem;color:var(--gray);}
 
-.exp-panel-content{padding-left:3rem;}
-.epc{display:none;}
+.epc{display:none;padding:1.5rem 1rem;}
 .epc.active{display:block;}
 .epc-date{font-size:0.72rem;color:var(--amber);letter-spacing:0.12em;margin-bottom:0.5rem;}
 .epc-title{
@@ -510,6 +505,23 @@ footer .f-amber{font-size:0.72rem;color:var(--amber);letter-spacing:0.1em;}
 .reveal{opacity:0;transform:translateY(18px);transition:opacity 0.6s,transform 0.6s;}
 .reveal.visible{opacity:1;transform:none;}
 
+/* ── SCROLL TO TOP ── */
+.scroll-top-btn{
+  position:fixed;bottom:2rem;right:2rem;
+  width:50px;height:50px;border-radius:50%;
+  background:var(--amber);color:var(--bg);
+  border:none;cursor:pointer;
+  font-size:1.2rem;font-weight:bold;
+  opacity:0;visibility:hidden;
+  transition:opacity 0.3s,visibility 0.3s;
+  z-index:1000;
+  display:flex;align-items:center;justify-content:center;
+}
+.scroll-top-btn.show{opacity:1;visibility:visible;}
+@media(max-width:768px){
+  .scroll-top-btn{bottom:1.5rem;right:1.5rem;width:45px;height:45px;font-size:1.1rem;}
+}
+
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
   nav{flex-wrap:wrap;row-gap:0.5rem;padding-right:1rem;}
@@ -522,7 +534,7 @@ footer .f-amber{font-size:0.72rem;color:var(--amber);letter-spacing:0.1em;}
   #home{grid-template-columns:1fr;}
   .hero-right{height:50vw;justify-content:center;}
   .hero-photo{object-position:center center;}
-  .summary-grid,.contact-layout,.skills-layout,.exp-grid{grid-template-columns:1fr;}
+  .summary-grid,.contact-layout,.skills-layout,.exp-accordion{grid-template-columns:1fr;}
   .links-grid{grid-template-columns:1fr 1fr;}
   .panel{padding:2rem;padding-top:4rem;text-align:center;}
   footer{flex-direction:column;gap:0.5rem;text-align:center;}
@@ -552,6 +564,10 @@ footer .f-amber{font-size:0.72rem;color:var(--amber);letter-spacing:0.1em;}
     height:auto;
     min-height:250px;
     object-fit:cover;
+  }
+  .hero-name{
+    font-size:clamp(2.5rem,8vw,4rem);
+    line-height:0.9;
   }
 }
 </style>
@@ -708,36 +724,14 @@ gtag('config', 'G-2QTMF62BSY');
     <h2 class="ph-title">Parcours professionnel</h2>
     <p class="ph-sub">8 ans d'expérience technique, du terrain au web.</p>
   </div>
-  <div class="exp-grid reveal">
-    <div class="exp-tabs">
-      <button class="exp-tab-btn active" data-t="ex1">
+  <div class="exp-accordion reveal">
+    <div class="exp-item">
+      <button class="exp-tab-btn active">
         <div class="etb-date">2023 — PRÉSENT</div>
         <div class="etb-title">Dev Web Freelance</div>
         <div class="etb-org">Blaka Recordz · TechCare</div>
       </button>
-      <button class="exp-tab-btn" data-t="ex2">
-        <div class="etb-date">2022 — 2023</div>
-        <div class="etb-title">Technicien Informatique</div>
-        <div class="etb-org">Ken Company</div>
-      </button>
-      <button class="exp-tab-btn" data-t="ex3">
-        <div class="etb-date">2020 — 2022</div>
-        <div class="etb-title">Technicien IT & Support</div>
-        <div class="etb-org">Radio RD Plus</div>
-      </button>
-      <button class="exp-tab-btn" data-t="ex4">
-        <div class="etb-date">2018 — 2020</div>
-        <div class="etb-title">Professeur Informatique</div>
-        <div class="etb-org">Haï'Tech School</div>
-      </button>
-      <button class="exp-tab-btn" data-t="ex5">
-        <div class="etb-date">2016 — 2017</div>
-        <div class="etb-title">Agent DRE / Saisie</div>
-        <div class="etb-org">CEP Haïti</div>
-      </button>
-    </div>
-    <div class="exp-panel-content">
-      <div class="epc active" id="ex1">
+      <div class="epc active">
         <div class="epc-date">JANVIER 2023 — PRÉSENT</div>
         <div class="epc-title">Développeur Web Freelance</div>
         <div class="epc-org">Blaka Recordz · TechCare Solution</div>
@@ -749,7 +743,14 @@ gtag('config', 'G-2QTMF62BSY');
           <li>Gestion autonome de projets de A à Z : brief client → mise en ligne</li>
         </ul>
       </div>
-      <div class="epc" id="ex2">
+    </div>
+    <div class="exp-item">
+      <button class="exp-tab-btn">
+        <div class="etb-date">2022 — 2023</div>
+        <div class="etb-title">Technicien Informatique</div>
+        <div class="etb-org">Ken Company</div>
+      </button>
+      <div class="epc">
         <div class="epc-date">2022 — 2023</div>
         <div class="epc-title">Technicien Dépannage Informatique</div>
         <div class="epc-org">Ken Company</div>
@@ -759,7 +760,14 @@ gtag('config', 'G-2QTMF62BSY');
           <li>Maintenance préventive et résolution d'incidents critiques</li>
         </ul>
       </div>
-      <div class="epc" id="ex3">
+    </div>
+    <div class="exp-item">
+      <button class="exp-tab-btn">
+        <div class="etb-date">2020 — 2022</div>
+        <div class="etb-title">Technicien IT & Support</div>
+        <div class="etb-org">Radio RD Plus</div>
+      </button>
+      <div class="epc">
         <div class="epc-date">2020 — 2022</div>
         <div class="epc-title">Technicien Informatique & Support</div>
         <div class="epc-org">Radio RD Plus</div>
@@ -769,7 +777,14 @@ gtag('config', 'G-2QTMF62BSY');
           <li>Continuité des opérations broadcast via support technique permanent</li>
         </ul>
       </div>
-      <div class="epc" id="ex4">
+    </div>
+    <div class="exp-item">
+      <button class="exp-tab-btn">
+        <div class="etb-date">2018 — 2020</div>
+        <div class="etb-title">Professeur Informatique</div>
+        <div class="etb-org">Haï'Tech School</div>
+      </button>
+      <div class="epc">
         <div class="epc-date">2018 — 2020</div>
         <div class="epc-title">Professeur d'Informatique</div>
         <div class="epc-org">Haï'Tech and English School</div>
@@ -779,7 +794,14 @@ gtag('config', 'G-2QTMF62BSY');
           <li>Suivi personnalisé des apprenants et évaluation des acquis</li>
         </ul>
       </div>
-      <div class="epc" id="ex5">
+    </div>
+    <div class="exp-item">
+      <button class="exp-tab-btn">
+        <div class="etb-date">2016 — 2017</div>
+        <div class="etb-title">Agent DRE / Saisie</div>
+        <div class="etb-org">CEP Haïti</div>
+      </button>
+      <div class="epc">
         <div class="epc-date">2016 — 2017</div>
         <div class="epc-title">Agent DRE & Opérateur de Saisie</div>
         <div class="epc-org">Conseil Électoral Provisoire (CEP) — Haïti</div>
@@ -918,7 +940,6 @@ gtag('config', 'G-2QTMF62BSY');
     <a href="images/D1.jpg" target="_blank" class="link-card">
       <img src="images/D1.jpg" alt="Cover D1" style="width:100%;border-radius:12px;margin-bottom:1rem;">
       <div class="lc-num">D1 ————</div>
-      <div class="lc-icon">🖼</div>
       <div class="lc-title">Design D1</div>
       <span class="lc-url">Aperçu cover</span>
       <div class="lc-desc">Visuel design de couverture réalisé pour projet créatif.</div>
@@ -926,7 +947,6 @@ gtag('config', 'G-2QTMF62BSY');
     <a href="images/D2.png" target="_blank" class="link-card">
       <img src="images/D2.png" alt="Cover D2" style="width:100%;border-radius:12px;margin-bottom:1rem;">
       <div class="lc-num">D2 ————</div>
-      <div class="lc-icon">🖼</div>
       <div class="lc-title">Design D2</div>
       <span class="lc-url">Aperçu cover</span>
       <div class="lc-desc">Design de branding et illustration pour communication visuelle.</div>
@@ -934,7 +954,6 @@ gtag('config', 'G-2QTMF62BSY');
     <a href="images/D3.jpg" target="_blank" class="link-card">
       <img src="images/D3.jpg" alt="Cover D3" style="width:100%;border-radius:12px;margin-bottom:1rem;">
       <div class="lc-num">D3 ————</div>
-      <div class="lc-icon">🖼</div>
       <div class="lc-title">Design D3</div>
       <span class="lc-url">Aperçu cover</span>
       <div class="lc-desc">Création de visuel digital pour support marketing.</div>
@@ -942,7 +961,6 @@ gtag('config', 'G-2QTMF62BSY');
     <a href="images/D4.jpg" target="_blank" class="link-card">
       <img src="images/D4.jpg" alt="Cover D4" style="width:100%;border-radius:12px;margin-bottom:1rem;">
       <div class="lc-num">D4 ————</div>
-      <div class="lc-icon">🖼</div>
       <div class="lc-title">Design D4</div>
       <span class="lc-url">Aperçu cover</span>
       <div class="lc-desc">Projet design orienté identité visuelle et mise en page.</div>
@@ -950,7 +968,6 @@ gtag('config', 'G-2QTMF62BSY');
     <a href="images/D5.jpg" target="_blank" class="link-card">
       <img src="images/D5.jpg" alt="Cover D5" style="width:100%;border-radius:12px;margin-bottom:1rem;">
       <div class="lc-num">D5 ————</div>
-      <div class="lc-icon">🖼</div>
       <div class="lc-title">Design D5</div>
       <span class="lc-url">Aperçu cover</span>
       <div class="lc-desc">Visuel finalisé en style moderne pour campagne digitale.</div>
@@ -1068,14 +1085,21 @@ window.addEventListener('click', e => {
   if(nav && !e.target.closest('nav')) nav.classList.remove('nav-open');
 });
 
-// ── Experience tabs ──
-document.querySelectorAll('.exp-tab-btn').forEach(btn => {
+// ── Experience accordion ──
+document.querySelectorAll('.exp-item').forEach(item => {
+  const btn = item.querySelector('.exp-tab-btn');
+  const content = item.querySelector('.epc');
   btn.addEventListener('click', () => {
-    document.querySelectorAll('.exp-tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.epc').forEach(p => p.classList.remove('active'));
-    btn.classList.add('active');
-    const t = document.getElementById(btn.dataset.t);
-    if(t) t.classList.add('active');
+    // Close all others
+    document.querySelectorAll('.exp-item').forEach(i => {
+      if (i !== item) {
+        i.querySelector('.exp-tab-btn').classList.remove('active');
+        i.querySelector('.epc').classList.remove('active');
+      }
+    });
+    // Toggle this one
+    btn.classList.toggle('active');
+    content.classList.toggle('active');
   });
 });
 
@@ -1128,6 +1152,20 @@ if(linksGrid && scrollLeft && scrollRight) {
   window.addEventListener('resize', updateButtonStates);
   setTimeout(updateButtonStates, 100);
 }
+
+// ── Scroll to top ──
+const scrollTopBtn = document.getElementById('scroll-top');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 300) {
+    scrollTopBtn.classList.add('show');
+  } else {
+    scrollTopBtn.classList.remove('show');
+  }
+});
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 </script>
+<button id="scroll-top" class="scroll-top-btn">↑</button>
 </body>
 </html>
